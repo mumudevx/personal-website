@@ -103,19 +103,20 @@ model-viewer::part(default-ar-button):hover {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1050;
+  z-index: 3;
+  padding: 16px;
   border-radius: 0;
   font-family: "Noto Sans", sans-serif;
-  background-color: rgba(227, 212, 185, 0.95); /* Warm parchment color */
-  border-color: #d4b483; /* Golden brown */
-  color: #5e3023; /* Deep burgundy */
+  background-color: rgba(227, 212, 185, 0.95);
+  border-color: #d4b483;
+  color: #5e3023;
 }
 
 #audio-alert .btn-close {
   font-size: 0.8rem;
-  color: #5e3023; /* Deep burgundy */
+  color: #5e3023;
 }
 
 #audio-alert strong {
-  color: #8e3200; /* Rich terracotta */
+  color: #8e3200;
 }

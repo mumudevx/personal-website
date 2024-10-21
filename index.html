@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Renaissance Rebirth Countdown</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Yeni Bir Çağ Başlıyor...</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&display=swap"
       rel="stylesheet"
     />
-    <script
-      type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
+    <link rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/assets/favicon.jpg" type="image/jpg" />
   </head>
   <body>
+    <div
+      class="alert audio-alert alert-dismissible fade show text-center mb-0"
+      role="alert"
+      id="audio-alert"
+    >
+      <strong data-bs-dismiss="alert">Sırrı Keşfetmek İçin Tıklayın</strong>
+    </div>
+
     <div id="particles-js"></div>
 
     <model-viewer
       id="sculpture"
-      src="/sculpture.glb"
+      src="/assets/sculpture.glb"
       auto-rotate
       auto-rotate-delay="150"
       rotation-per-second="15deg"
-      camera-orbit="0deg 70deg 120%"
+      camera-orbit="0deg 75deg 120%"
       exposure="0.7"
       shadow-intensity="0.7"
       shadow-softness="0.5"
@@ -32,34 +38,42 @@
     </model-viewer>
 
     <div id="countdown">
-      <h1>The Great Renaissance Rebirth</h1>
-      <p>Time remaining until the dawn of a new era of art and enlightenment</p>
+      <h1>Yeni Bir Çağ Başlıyor...</h1>
+      <p>
+        Yakında farklı disiplinleri bir araya getirip kendimi ifade edeceğim
+        yeni bir dünyanın kapılarını aralıyorum...
+      </p>
+
       <div id="countdown-boxes">
         <div class="time-box">
           <span id="days">00</span>
-          <span class="label">Days</span>
+          <span class="label">Gün</span>
         </div>
         <div class="time-box">
           <span id="hours">00</span>
-          <span class="label">Hours</span>
+          <span class="label">Saat</span>
         </div>
         <div class="time-box">
           <span id="minutes">00</span>
-          <span class="label">Minutes</span>
+          <span class="label">Dakika</span>
         </div>
         <div class="time-box">
           <span id="seconds">00</span>
-          <span class="label">Seconds</span>
+          <span class="label">Saniye</span>
         </div>
       </div>
     </div>
 
-    <audio
-      id="renaissanceMusic"
-      src="path/to/your/renaissance-music.mp3"
-    ></audio>
+    <audio autoplay loop id="renaissance-music">
+      <source src="/assets/renaissance-music.mp3" />
+    </audio>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <script src="/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/script.js"></script>
   </body>
 </html>

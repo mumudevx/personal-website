@@ -1,10 +1,10 @@
 // Particle.js configuration
-particlesJS.load("particles-js", "particles.json", function () {
+particlesJS.load("particles-js", "/assets/particles.json", function () {
   console.log("particles.js loaded - callback");
 });
 
 // Countdown functionality
-const countdownDate = new Date("2024-12-31T23:59:59").getTime();
+const countdownDate = new Date("2024-12-01T23:59:59").getTime();
 let originalEndTime;
 
 function updateCountdown() {
@@ -41,19 +41,10 @@ function updateCountdown() {
 const countdownTimer = setInterval(updateCountdown, 1000);
 updateCountdown(); // Initial call to avoid delay
 
-let renaissanceMusic;
-
-function playSculptureMusic() {
-  if (renaissanceMusic) {
-    renaissanceMusic.play().catch((error) => {
-      console.error("Error playing audio:", error);
-    });
-  }
-}
-
-function initializeAudio() {
-  renaissanceMusic = new Audio("path/to/renaissance_music.mp3");
-  renaissanceMusic.loop = true;
-}
-
-document.addEventListener("DOMContentLoaded", initializeAudio);
+document.addEventListener(
+  "click",
+  function () {
+    document.getElementById("renaissance-music").play();
+  },
+  { once: true }
+);

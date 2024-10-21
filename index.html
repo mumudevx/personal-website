@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Renaissance Rebirth Countdown</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+
+    <model-viewer
+      id="sculpture"
+      src="/sculpture.glb"
+      auto-rotate
+      auto-rotate-delay="150"
+      rotation-per-second="15deg"
+      camera-orbit="0deg 70deg 120%"
+      exposure="0.7"
+      shadow-intensity="0.7"
+      shadow-softness="0.5"
+      interaction-prompt="none"
+    >
+    </model-viewer>
+
+    <div id="countdown">
+      <h1>The Great Renaissance Rebirth</h1>
+      <p>Time remaining until the dawn of a new era of art and enlightenment</p>
+      <div id="countdown-boxes">
+        <div class="time-box">
+          <span id="days">00</span>
+          <span class="label">Days</span>
+        </div>
+        <div class="time-box">
+          <span id="hours">00</span>
+          <span class="label">Hours</span>
+        </div>
+        <div class="time-box">
+          <span id="minutes">00</span>
+          <span class="label">Minutes</span>
+        </div>
+        <div class="time-box">
+          <span id="seconds">00</span>
+          <span class="label">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <audio
+      id="renaissanceMusic"
+      src="path/to/your/renaissance-music.mp3"
+    ></audio>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

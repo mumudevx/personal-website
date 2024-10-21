@@ -48,3 +48,26 @@ document.addEventListener(
   },
   { once: true }
 );
+
+// Function to check if the device is mobile
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+}
+
+// Function to set the viewport scale
+function setViewportScale() {
+  const viewport = document.getElementById("viewport-meta");
+  if (isMobile()) {
+    viewport.setAttribute("content", "width=device-width, initial-scale=0.5");
+  } else {
+    viewport.setAttribute("content", "width=device-width, initial-scale=1.0");
+  }
+}
+
+// Call the function when the page loads
+window.addEventListener("load", setViewportScale);
+
+// Also call the function if the window is resized
+window.addEventListener("resize", setViewportScale);

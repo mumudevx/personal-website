@@ -1,3 +1,7 @@
+---
+title: "Dummy Book 01"
+---
+
 # Dummy Book 01
 
 ## Section 01

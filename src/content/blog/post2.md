@@ -1,3 +1,7 @@
+---
+title: "Dummy Blog 02"
+---
+
 # Dummy Blog 02
 
 ## Section 01

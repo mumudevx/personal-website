@@ -1,5 +1,6 @@
 use anyhow::{Context, Result};
 use pulldown_cmark::{html, Parser};
+use serde::Serialize;
 use std::{fs, path::Path};
 use tera::Tera;
 use walkdir::WalkDir;
@@ -45,6 +46,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
+#[derive(Serialize)]
 struct PostMetadata {
     title: String,
     slug: String,

@@ -8,3 +8,4 @@ walkdir = "2.4.0"
 pulldown-cmark = "0.9.2"
 tera = "1.17.1"
 anyhow = "1.0.75"
+serde = { version = "1.0", features = ["derive"] }

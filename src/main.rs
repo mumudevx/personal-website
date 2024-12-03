@@ -42,6 +42,11 @@ fn main() -> Result<()> {
     // Copy assets
     copy_assets("src/assets", "dist/assets")?;
 
+    // Copy CNAME file if it exists
+    if Path::new("src/CNAME").exists() {
+        fs::copy("src/CNAME", "dist/CNAME").context("Failed to copy CNAME file")?;
+    }
+
     println!("Static site generated successfully in `{}`", dist_dir);
     Ok(())
 }

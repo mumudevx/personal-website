@@ -1,0 +1,39 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger on changes to the main branch
+    paths:
+      - "src/**"  # Only trigger when content changes occur
+      - "Cargo.toml"  # Rebuild if dependencies or build logic changes
+      - ".github/**"  # Trigger if workflow files are updated
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Install Rust and Cargo
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      # Build the static site
+      - name: Build Static Site
+        run: |
+          cargo build --release
+          cargo run
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

@@ -36,3 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages  # Ensure we're deploying to the gh-pages branch
           publish_dir: ./dist       # The directory containing the generated site
+

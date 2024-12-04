@@ -18,4 +18,4 @@ Curabitur laoreet dolor diam, vitae consectetur libero tincidunt quis. Vestibulu
 
 Donec lectus leo, suscipit at elit in, ultricies pretium elit. In vitae odio eros. Nulla facilisi. Aenean ornare ex nulla, sagittis tempor odio pretium ac. Mauris in ultrices ante. Proin vehicula quis lacus quis elementum. Nulla laoreet aliquet egestas.
 
-![Rubber Duck](/dist/assets/rubber-duck.jpg "Rubber Duck")
+![Rubber Duck](/assets/rubber-duck.jpg "Rubber Duck")

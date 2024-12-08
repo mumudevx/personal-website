@@ -3,15 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Muhsin Arslan | Homepage</title>
+    <title>Home - Muhsin Arslan</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
   </head>
   <body>
-    <h1>Welcome to My Website</h1>
-    <nav>
-      <ul>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/book">Books</a></li>
-      </ul>
-    </nav>
+    <header>
+      <nav class="container">
+        <a href="/" class="logo">Muhsin Arslan</a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/books.html">Books</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+<section class="hero">
+  <div class="container">
+    <h1 class="animate-fade-in">Welcome to My Website</h1>
+    <p class="animate-fade-in animation-delay-200">
+      I write about software development, technology, and my journey as a
+      developer.
+    </p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="grid">
+    <div class="blog-card animate-fade-in animation-delay-400">
+      <h3>Latest Blog Posts</h3>
+      <p>Check out my latest thoughts and tutorials on software development.</p>
+      <a href="/blog.html">Read Blog →</a>
+    </div>
+
+    <div class="book-card animate-fade-in animation-delay-400">
+      <h3>Book Reviews</h3>
+      <p>Explore my collection of book reviews and recommendations.</p>
+      <a href="/books.html">View Books →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="contact-info">
+            <p>
+              © 2024 Muhsin Arslan | Generated via
+              <a
+                href="https://github.com/mumudevx/md-static-site-generator"
+                target="_blank"
+                >Md Static Site Generator</a
+              >
+            </p>
+          </div>
+          <div class="social-links">
+            <a target="_blank" href="https://linkedin.com/in/muhsinarslan">LinkedIn</a>
+            <a target="_blank" href="https://github.com/mumudevx">GitHub</a>
+            <a target="_blank" href="https://bento.me/muhsinarslan">Bento</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

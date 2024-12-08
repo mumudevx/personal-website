@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Muhsin Arslan | Homepage</title>
-  </head>
-  <body>
-    <h1>Welcome to My Website</h1>
-    <nav>
-      <ul>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/book">Books</a></li>
-      </ul>
-    </nav>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Home - Muhsin Arslan{% endblock %} {%
+block content %}
+<section class="hero">
+  <div class="container">
+    <h1 class="animate-fade-in">Welcome to My Website</h1>
+    <p class="animate-fade-in animation-delay-200">
+      I write about software development, technology, and my journey as a
+      developer.
+    </p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="grid">
+    <div class="blog-card animate-fade-in animation-delay-400">
+      <h3>Latest Blog Posts</h3>
+      <p>Check out my latest thoughts and tutorials on software development.</p>
+      <a href="/blog.html">Read Blog →</a>
+    </div>
+
+    <div class="book-card animate-fade-in animation-delay-400">
+      <h3>Book Reviews</h3>
+      <p>Explore my collection of book reviews and recommendations.</p>
+      <a href="/books.html">View Books →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

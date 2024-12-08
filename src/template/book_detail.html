@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}{{ title }} - Book Review - Muhsin
+Arslan{% endblock %} {% block content %}
+<article class="book-detail container">
+  <a href="/books.html" class="back-link">← Back to Books</a>
+
+  <div class="book-header">
+    <div class="book-info">
+      <h1>{{ title }}</h1>
+      <div class="publish-date">
+        <time datetime="{{ date }}">{{ date }}</time>
+      </div>
+    </div>
+
+    {% if image %}
+    <img src="{{ image }}" alt="{{ title }}" class="book-cover" />
+    {% endif %}
+  </div>
+
+  <div class="book-description">{{ content | safe }}</div>
+</article>
+{% endblock %}

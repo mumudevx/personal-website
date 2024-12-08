@@ -28,7 +28,7 @@ fn main() -> Result<()> {
             // Categorize the post based on its directory
             if path.starts_with("src/content/blog") {
                 blog_posts.push(metadata);
-            } else if path.starts_with("src/content/book") {
+            } else if path.starts_with("src/content/books") {
                 book_posts.push(metadata);
             }
         }
@@ -37,7 +37,7 @@ fn main() -> Result<()> {
     // Generate the homepage, blog listing, and book listing pages
     generate_homepage(dist_dir, &tera)?;
     generate_listing("blog", &blog_posts, dist_dir, &tera)?;
-    generate_listing("book", &book_posts, dist_dir, &tera)?;
+    generate_listing("books", &book_posts, dist_dir, &tera)?;
 
     // Copy assets
     copy_assets("src/assets", "dist/assets")?;
@@ -55,18 +55,29 @@ fn main() -> Result<()> {
 struct PostMetadata {
     title: String,
     slug: String,
+    image: String,
+    description: String,
+    date: String,
 }
 
 fn process_markdown(src_path: &Path, dist_dir: &str, tera: &Tera) -> Result<PostMetadata> {
     // Read markdown file
     let content = fs::read_to_string(src_path).context("Failed to read markdown file")?;
 
-    // Extract metadata (e.g., title) and parse markdown content
-    let title = extract_metadata(&content, "title").unwrap_or_else(|| "Untitled".to_string());
-    let slug = src_path.file_stem().unwrap().to_str().unwrap().to_string();
+    // Extract metadata and content, skipping frontmatter
+    let (frontmatter, markdown_content) = split_frontmatter(&content);
 
-    // Parse markdown to HTML
-    let parser = Parser::new(&content);
+    // Extract metadata from frontmatter
+    let title = extract_metadata(&frontmatter, "title").unwrap_or_else(|| "Untitled".to_string());
+    let slug = src_path.file_stem().unwrap().to_str().unwrap().to_string();
+    let image = extract_metadata(&frontmatter, "image")
+        .unwrap_or_else(|| "/assets/images/rubber-duck.jpg".to_string());
+    let description = extract_metadata(&frontmatter, "description")
+        .unwrap_or_else(|| "No description".to_string());
+    let date = extract_metadata(&frontmatter, "date").unwrap_or_else(|| "No date".to_string());
+
+    // Parse markdown to HTML (using only the content part)
+    let parser = Parser::new(&markdown_content);
     let mut html_output = String::new();
     html::push_html(&mut html_output, parser);
 
@@ -81,18 +92,35 @@ fn process_markdown(src_path: &Path, dist_dir: &str, tera: &Tera) -> Result<Post
         fs::create_dir_all(parent).context("Failed to create output directories")?;
     }
 
+    // Determine template based on content type
+    let template_name = if src_path.starts_with("src/content/blog") {
+        "blog_detail.html"
+    } else if src_path.starts_with("src/content/books") {
+        "book_detail.html"
+    } else {
+        "base.html" // fallback template
+    };
+
     // Render HTML using Tera template
     let mut context = tera::Context::new();
     context.insert("content", &html_output);
     context.insert("title", &title);
-
+    context.insert("image", &image);
+    context.insert("description", &description);
+    context.insert("date", &date);
     let rendered = tera
-        .render("base.html", &context)
+        .render(template_name, &context)
         .context("Failed to render template")?;
 
     // Write to the output HTML file
     fs::write(output_path, rendered).context("Failed to write HTML file")?;
-    Ok(PostMetadata { title, slug })
+    Ok(PostMetadata {
+        title,
+        slug,
+        image,
+        description,
+        date,
+    })
 }
 
 fn extract_metadata(content: &str, key: &str) -> Option<String> {
@@ -128,7 +156,7 @@ fn generate_listing(
 
     let template_name = match category {
         "blog" => "blog_list.html",
-        "book" => "book_list.html",
+        "books" => "book_list.html",
         _ => return Err(anyhow::anyhow!("Unknown category: {}", category)),
     };
 
@@ -154,4 +182,33 @@ fn copy_assets(src: &str, dest: &str) -> Result<()> {
         }
     }
     Ok(())
+}
+
+fn split_frontmatter(content: &str) -> (String, String) {
+    let mut lines = content.lines();
+    let mut frontmatter = String::new();
+    let mut markdown_content = String::new();
+
+    // Check if the file starts with frontmatter delimiter
+    if let Some("---") = lines.next() {
+        // Collect frontmatter until the closing delimiter
+        for line in lines.by_ref() {
+            if line == "---" {
+                break;
+            }
+            frontmatter.push_str(line);
+            frontmatter.push('\n');
+        }
+
+        // The rest is markdown content
+        for line in lines {
+            markdown_content.push_str(line);
+            markdown_content.push('\n');
+        }
+    } else {
+        // No frontmatter found, treat everything as content
+        markdown_content = content.to_string();
+    }
+
+    (frontmatter, markdown_content)
 }

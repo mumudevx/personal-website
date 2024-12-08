@@ -1,6 +1,6 @@
 ---
-title: Dummy Blog 01
-slug: post1
+title: Dummy Book 01
+slug: book1
 image: /assets/images/rubber-duck.jpg
 description: This is description context.
 date: 2024-12-8
